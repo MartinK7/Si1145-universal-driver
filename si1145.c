@@ -95,7 +95,7 @@ static SI1145_RC si1145_check_reg(SI1145_DEV *si1145, SI1145_REG reg, uint8_t ex
 {
     uint8_t data;
 
-    if (si1145_read_reg(si1145, reg, &data) != IO_SPA_OK)
+    if (si1145_read_reg(si1145, reg, &data) != SI1145_OK)
     {
         return SI1145_FAILURE;
     }
@@ -105,7 +105,7 @@ static SI1145_RC si1145_check_reg(SI1145_DEV *si1145, SI1145_REG reg, uint8_t ex
 
 static SI1145_RC si1145_read_reg(SI1145_DEV *si1145, SI1145_REG reg, uint8_t *data)
 {
-    return si1145_io_i2c_read(si1145, reg, 1, data);
+    return si1145_io_i2c_read(si1145, reg, 1, data) != IO_SPA_OK ? SI1145_FAILURE : SI1145_OK;
 }
 
 static SI1145_RC si1145_write_reg(SI1145_DEV *si1145, SI1145_REG reg, uint8_t data)
